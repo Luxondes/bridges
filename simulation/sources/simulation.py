@@ -88,12 +88,12 @@ class HostServer():
             self.hostsocket.bind(self.server_address)
         except:
             self.isRunning=False
-            
+
         if not self.isRunning:
             self.hostsocket.close()
             return
         ip,port=self.hostsocket.getsockname()
-        print(str(ip)+":"+str(port))
+        print("Simulation port: "+str(port))
         self.server_address=self.hostsocket.getsockname()
         if not self.isRunning:
             self.hostsocket.close()
@@ -128,7 +128,7 @@ class HostServer():
                 answer=self.readAndReturn(splits[i].strip().upper())
                 if(answer != None):
                     self.connection.send(answer)
-                    
+
     ## Close the socket.
     def close_socket(self):
         if self.connection!=None :
@@ -238,7 +238,7 @@ class HostServer():
         except:
             None
         return dbs
-    
+
 ## Launch the host server and link the CTRL+D (stop) and CTRL+Q (quit) with the stop of the server.
 ## Simu 0 is frequency of 1803 values, Simu 1 is a probe for vector field test
 if __name__ == '__main__':

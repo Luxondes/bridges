@@ -1,10 +1,16 @@
 # Installation
 
+## RSA
+<p>
 Download and install the library RSA : https://www.tek.com/en/products/spectrum-analyzers/rsa306
-On their website, click on Technical Docs then Software, then download the RSA Application Programming Interface (API) of your computer.
+On their website, click on Download then Software and download the RSA Application Programming Interface (API) of your computer.
+</p>
 
+## Python
+<p>
 Download and install python 3+ : https://www.python.org/downloads/
 Be sure to have checked "Add Python environment variables" on the Python installation. Else relaunch the Python program.
+</p>
 
 # Launch
 To launch the script, double click on start_rsa.

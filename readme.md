@@ -15,9 +15,11 @@ http://www.ets-lindgren.com/products/probes-monitors/electric-field-probes/9003/
 #### Values returned
 The bridge return a array of real of 32 bits with a header IEEE 754.
 #### Link
-https://www.tek.com/en/spectrum-analyzer/rsa306-manual-10
+https://www.tek.com/en/products/spectrum-analyzers/rsa306
 #### Compatibility
 Tested with RSA300 and RSA500
+Compatible with all RSA300,600,500 devices.
+
 #### Known issues
 - Connection can be blocked per Window. Need to restart the bridge.
 - Their RSA reset their center/span when you disconnect from them, causing a "incompatibility" to use SignalVu before for setup.

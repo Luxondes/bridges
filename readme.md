@@ -1,5 +1,4 @@
 # Description
-***
 <p>
 Repositories which contains multiples bridges for different device where the bridge create a SCPI wrapper.
 After the user can connect to the bridge with the Scanphone, Console or any device capable of read SCPI format.

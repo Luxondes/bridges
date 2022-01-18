@@ -67,6 +67,7 @@ class HostServer():
                                 break
                             try:
                                 data=self.connection.recv(4096).decode()
+                                print(data)
                                 if(data==""):
                                     print('Request to close the connection between client and bridge.')
                                     self.close_socket()
@@ -227,6 +228,12 @@ class HostServer():
             if(message == "UNIT?"):
                 # Return a string containing the unit.
                 return self.encode(self.getUnit())
+            if(message == "START?"):
+                # Return a string containing the start.
+                return self.encode(str(self.center.value-self.specSet.span/2))
+            if(message == "STOP?"):
+                # Return a string containing the stop.
+                return self.encode(str(self.center.value+self.specSet.span/2))
             if(message == "CENTER?"):
                 # Return a string containing the center.
                 return self.encode(str(self.center.value))
@@ -344,10 +351,10 @@ def readPropertiesFile():
                 values[1]=float(val)
             except:
                 None
-        if(val.startswith("-harddisk=")):
+        if(val.startswith("harddisk=")):
             val=val[len("harddisk="):]
             try:
-                values[2]=str(val)
+                values[2]=str(val).strip()
             except:
                 None
     return values

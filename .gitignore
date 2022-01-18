@@ -3,3 +3,4 @@ __pycache__
 build
 utils
 bridge_rtl_sdr
+bridge_RSA/toinstall

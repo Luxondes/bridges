@@ -21,6 +21,7 @@ Tested with RSA300 and RSA500
 #### Known issues
 - Connection can be blocked per Window. Need to restart the bridge.
 - Their RSA reset their center/span when you disconnect from them, causing a "incompatibility" to use SignalVu before for setup.
+- No working on Linux/MacOS.
 
 ## Simulation
 #### Values returned

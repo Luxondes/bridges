@@ -17,12 +17,13 @@ The bridge return a array of real of 32 bits with a header IEEE 754.
 #### Link
 https://www.tek.com/en/products/spectrum-analyzers/rsa306
 #### Compatibility
-Tested with RSA300 and RSA500
+Tested with RSA300 and RSA500</br>
 Compatible with all RSA300,600,500 devices.
 
 #### Known issues
 - Connection can be blocked per Window. Need to restart the bridge.
-- Their RSA reset their center/span when you disconnect from them, causing a "incompatibility" to use SignalVu before for setup.
+- The RSA reset its center/span when you disconnect from them, causing a "incompatibility" to use SignalVu before for setup.
+Meaning you can't pre-set the center/span with SignalVu before doing your measurement with the EM-Scanphone. (That's why we're using a properties file)
 - No working on Linux/MacOS.
 
 ## Simulation

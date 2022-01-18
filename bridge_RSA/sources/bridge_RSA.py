@@ -67,7 +67,6 @@ class HostServer():
                                 break
                             try:
                                 data=self.connection.recv(4096).decode()
-                                print(data)
                                 if(data==""):
                                     print('Request to close the connection between client and bridge.')
                                     self.close_socket()

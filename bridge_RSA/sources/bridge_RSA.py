@@ -111,7 +111,17 @@ class HostServer():
             self.hostsocket.close()
             return
         ip,port=self.hostsocket.getsockname()
+
+        try:
+            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            s.connect(("8.8.8.8", 80))
+            print("External IP of the computer: "+s.getsockname()[0])
+            s.close()
+        except:
+            print("External IP of the computer not found")
+
         print("Bridge port: "+str(port))
+        
         self.server_address=self.hostsocket.getsockname()
         if not self.isRunning:
             self.hostsocket.close()
@@ -362,9 +372,7 @@ def readPropertiesFile():
 if __name__ == '__main__':
     values=readPropertiesFile()
     print("Center: "+str(values[0])+"Hz Span: "+str(values[1])+"Hz")
-##    h_name = socket.gethostname()
-##    IP_addres = socket.gethostbyname(h_name)
-##    print(IP_addres)
+
     hostserver=HostServer(values[0],values[1],values[2])
 
     signal.signal(signal.SIGTERM,hostserver.stop)

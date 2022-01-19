@@ -93,6 +93,14 @@ class HostServer():
             self.hostsocket.close()
             return
         ip,port=self.hostsocket.getsockname()
+
+        try:
+            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            s.connect(("8.8.8.8", 80))
+            print("External IP of the computer: "+s.getsockname()[0])
+            s.close()
+        except:
+            print("External IP of the computer not found")
         print("Simulation port: "+str(port))
         self.server_address=self.hostsocket.getsockname()
         if not self.isRunning:

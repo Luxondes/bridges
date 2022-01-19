@@ -361,11 +361,10 @@ def readPropertiesFile():
 ## Launch the host server and link the CTRL+D (stop) and CTRL+Q (quit) with the stop of the server.
 if __name__ == '__main__':
     values=readPropertiesFile()
-    if (values == None):
-        values=convertArgsToFloat(sys.argv)
-        callInputUser(values)
     print("Center: "+str(values[0])+"Hz Span: "+str(values[1])+"Hz")
-        
+##    h_name = socket.gethostname()
+##    IP_addres = socket.gethostbyname(h_name)
+##    print(IP_addres)
     hostserver=HostServer(values[0],values[1],values[2])
 
     signal.signal(signal.SIGTERM,hostserver.stop)

@@ -26,6 +26,18 @@ Compatible with all RSA300,600,500 devices.
 Meaning you can't pre-set the center/span with SignalVu before doing your measurement with the EM-Scanphone. (That's why we're using a properties file)
 - No working on Linux/MacOS.
 
+## Bridge SA44B Spectrum analyzer
+#### Values returned
+The bridge return a array of real of 32 bits with a header IEEE 754.
+#### Link
+https://signalhound.com/products/usb-sa44b/
+#### Compatibility
+Tested with SA44B Spectrum analyzer</br>
+Compatible with all RSA300,600,500 devices.
+
+#### Known issues
+- No working on Linux/MacOS.
+
 ## Simulation
 #### Values returned
 - If probe: return a array of real containing [x,y,z,length] (no header)

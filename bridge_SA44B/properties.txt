@@ -1,0 +1,4 @@
+# The frequency center of the spectrum analyzer. (unit = Hz)
+center=106.6e6
+# The span of the spectrum analyzer. (unit = Hz)
+span=10e6

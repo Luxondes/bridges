@@ -266,13 +266,14 @@ class HostServer():
                 self.rsa.CONFIG_SetCenterFreq(c_double(int(splits[1])))
                 self.rsa.CONFIG_GetCenterFreq(byref(self.center))
                 return None
-            if(splits[0] == "SPAN"):
-                # Set the span of the RSA.
-                self.span=int(splits[1])
-                self.setSpan(self.specSet,self.span)
-                self.rsa.SPECTRUM_SetSettings(self.specSet)
-                self.rsa.SPECTRUM_GetSettings(byref(self.specSet))
-                return None
+            # Because set span modify the rbw so the number of points on the array, we cannot modify the span.
+##            if(splits[0] == "SPAN"):
+##                # Set the span of the RSA.
+##                self.span=int(splits[1])
+##                self.setSpan(self.specSet,self.span)
+##                self.rsa.SPECTRUM_SetSettings(self.specSet)
+##                self.rsa.SPECTRUM_GetSettings(byref(self.specSet))
+##                return None
         return None
 
     ## Add \n at the end of the message then transform it to a array of bytes.

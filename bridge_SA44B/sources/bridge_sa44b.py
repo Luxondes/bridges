@@ -250,10 +250,11 @@ class HostServer():
                 self.center=int(splits[1])
                 sa_config_center_span(self.handle, self.center, self.span)
                 return None
-            if(splits[0] == "SPAN"):
-                # Set the span of the RSA.
-                self.setSpan(splits[1])
-                return None
+            # Because set span modify the rbw so the number of points on the array, we cannot modify the span.
+##            if(splits[0] == "SPAN"):
+##                # Set the span of the RSA.
+##                self.setSpan(splits[1])
+##                return None
         return None
 
     ## Add \n at the end of the message then transform it to a array of bytes.

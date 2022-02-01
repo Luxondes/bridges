@@ -36,6 +36,7 @@ If the shell do not print any "Waiting connection" after 5 seconds, ctrl+C can u
 
 To stop the script, you will need to ctrl+C and wait few seconds or just close the shell.
 </p>
+
 # Variables
 
 Modify values of properties.txt for setup SA44B.

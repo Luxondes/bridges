@@ -333,16 +333,18 @@ class HostServer():
 
 ## read all variables inside the file properties.txt.
 def readPropertiesFile():
+    # Default values
+    values = [106.6e6,10e6,'C']
+    
     bol=os.path.isfile('./properties.txt')
     if not bol:
-        return None
+        return values
     print("This server bridge will use the properties.txt")
 
     file1 = open('./properties.txt', 'r')
     lines = file1.readlines()
 
-    # Default values
-    values = [106.6e6,10e6,'C']
+
 
     # Read each line.
     for val in lines:

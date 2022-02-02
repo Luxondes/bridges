@@ -19,8 +19,8 @@ The bridge return a array of real of 32 bits with a header IEEE 754.
 https://www.tek.com/en/products/spectrum-analyzers/rsa306
 https://www.tek.com/en/products/spectrum-analyzers/rsa500
 
-![bridges](/imgs/Tek-rsa306b_03a_h.png)
-![bridges](/imgs/Tek-rsa507a_04a-504px.png)
+![bridges](/imgs/rsa300.png)
+![bridges](/imgs/rsa500.png)
 #### Compatibility
 Tested with RSA300 and RSA500</br>
 Compatible with all RSA300,600,500 devices.
@@ -37,7 +37,7 @@ Meaning you can't pre-set the center/span with SignalVu before doing your measur
 The bridge return a array of real of 32 bits with a header IEEE 754.
 #### Link
 https://signalhound.com/products/usb-sa44b/
-![bridges](/imgs/SA44B-single.jpg)
+![bridges](/imgs/SA44B.jpg)
 #### Compatibility
 Tested with SA44B Spectrum analyzer</br>
 Compatible with all RSA300,600,500 devices.

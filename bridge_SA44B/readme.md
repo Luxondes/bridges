@@ -39,4 +39,4 @@ To stop the script, you will need to ctrl+C and wait few seconds or just close t
 
 # Variables
 
-Modify values of properties.txt for setup SA44B.
+Modify values of properties.ini for setup SA44B.

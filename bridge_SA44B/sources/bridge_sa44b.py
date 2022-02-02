@@ -27,6 +27,7 @@ class HostServer():
         self.oldText=None
         self.att=0
         self.rbw=0
+        self.handle=None
         
     ## Stop the host server and disconnect with the SA
     def stop(self,signum,frame):
@@ -277,40 +278,66 @@ class HostServer():
         return self.oldText
 
         
-## read all variables inside the file properties.txt.
-def readPropertiesFile():
-    bol=os.path.isfile('./properties.txt')
+## read all variables inside the file properties.ini.
+def readPropertiesFile(filename):
+    bol=os.path.isfile('./'+filename)
+    # Default values
+    values = [106.6e6,10e6,False]
     if not bol:
-        return [106.6e6,10e6]
-    print("This server bridge will use the properties.txt")
+        return values
+    
 
-    file1 = open('./properties.txt', 'r')
+    file1 = open('./'+filename, 'r')
     lines = file1.readlines()
 
-    # Default values
-    values = [106.6e6,10e6]
+    values[2]=True
+
+    spikePresetBoolean=True
 
     # Read each line.
     for val in lines:
+##        val=val.upper()
         if(val.startswith("#")):
             continue
-        if(val.startswith("center=")):
-            val=val[len("center="):]
+
+        # In case of the spike preset, read only the config after the tag SWEEP.
+        if(val.upper().startswith("[SWEEP]")):
+            spikePresetBoolean=True
+            continue
+        if(not spikePresetBoolean):
+            continue
+        if(val.startswith("[")):
+            spikePresetBoolean=False
+            continue
+        if(val.upper().startswith("SPIKEPRESET=")):
+            
+            val=val[len("SPIKEPRESET="):]
+            
+            try:
+                # Read the spike preset instead. If found, return it, otherwise continue.
+                values2=readPropertiesFile(str(val).strip())
+                if(values2[2]==True):
+                    return values2
+            except:
+                None       
+        if(val.upper().startswith("CENTER=")):
+            val=val[len("CENTER="):]
             try:
                 values[0]=float(val)
             except:
                 None
-        if(val.startswith("span=")):
-            val=val[len("span="):]
+        if(val.upper().startswith("SPAN=")):
+            val=val[len("SPAN="):]
             try:
                 values[1]=float(val)
             except:
                 None
+    print("This server bridge will use the "+filename)
     return values
 
 ## Launch the host server and link the CTRL+D (stop) and CTRL+Q (quit) with the stop of the server.
 if __name__ == '__main__':
-    values=readPropertiesFile()
+    values=readPropertiesFile("properties.ini")
     print("Center: "+str(values[0])+"Hz Span: "+str(values[1])+"Hz")
 
     hostserver=HostServer(values[0],values[1])

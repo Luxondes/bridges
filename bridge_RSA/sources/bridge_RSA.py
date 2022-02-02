@@ -333,47 +333,50 @@ class HostServer():
         return specSet
 
 ## read all variables inside the file properties.txt.
-def readPropertiesFile():
+def readPropertiesFile(filename):
     # Default values
-    values = [106.6e6,10e6,'C']
+    values = [106.6e6,10e6,'C',False]
     
-    bol=os.path.isfile('./properties.txt')
+    bol=os.path.isfile('./'+filename)
     if not bol:
         return values
-    print("This server bridge will use the properties.txt")
-
-    file1 = open('./properties.txt', 'r')
+    
+    file1 = open('./'+filename, 'r')
     lines = file1.readlines()
-
+    values[3]=True
 
 
     # Read each line.
     for val in lines:
         if(val.startswith("#")):
             continue
-        if(val.startswith("center=")):
-            val=val[len("center="):]
+        if(val.startswith("[")):
+            continue
+                    
+        if(val.upper().startswith("CENTER=")):
+            val=val[len("CENTER="):]
             try:
                 values[0]=float(val)
             except:
                 None
-        if(val.startswith("span=")):
-            val=val[len("span="):]
+        if(val.upper().startswith("SPAN=")):
+            val=val[len("SPAN="):]
             try:
                 values[1]=float(val)
             except:
                 None
-        if(val.startswith("harddisk=")):
-            val=val[len("harddisk="):]
+        if(val.upper().startswith("HARDDISK=")):
+            val=val[len("HARDDISK="):]
             try:
                 values[2]=str(val).strip()
             except:
                 None
+    print("This server bridge will use the "+filename)
     return values
 
 ## Launch the host server and link the CTRL+D (stop) and CTRL+Q (quit) with the stop of the server.
 if __name__ == '__main__':
-    values=readPropertiesFile()
+    values=readPropertiesFile("properties.ini")
     print("Center: "+str(values[0])+"Hz Span: "+str(values[1])+"Hz")
 
     hostserver=HostServer(values[0],values[1],values[2])

@@ -22,4 +22,4 @@ To stop the script, you will need to ctrl+C and wait few seconds or just close t
 </p>
 # Variables
 
-Modify values of properties.txt for setup RSA.
+Modify values of properties.ini for setup RSA.

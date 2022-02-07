@@ -1,11 +1,3 @@
-Installer VS2012 redist pour le .dll
-
-https://signalhound.com/products/usb-sa44b/
-
-
-Installer ou avoir les requirements indiqués ci dessous:
-
-
 # Installation
 
 ## SA44B

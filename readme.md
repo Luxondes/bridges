@@ -38,8 +38,7 @@ The bridge return a array of real of 32 bits with a header IEEE 754.
 https://signalhound.com/products/usb-sa44b/<br>
 ![bridges](/imgs/SA44B.jpg)
 #### Compatibility
-Tested with SA44B Spectrum analyzer</br>
-Compatible with all RSA300,600,500 devices.
+Tested with SA44B Spectrum analyzer
 
 #### Known issues
 - No working on Linux/MacOS.

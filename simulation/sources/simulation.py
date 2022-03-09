@@ -49,6 +49,7 @@ class HostServer():
                                 break
                             try:
                                 data=self.connection.recv(4096).decode()
+##                                print(data)
                                 if(data==""):
                                     print('end connection')
                                     self.close_socket()
@@ -58,15 +59,19 @@ class HostServer():
                                 if (data):
                                     self.read_data(data)
 
-                            except socket.timeout:
+                            except socket.timeout as e:
+                                print(e)
                                 # If too many exception, close the client.
                                 timeoutcustom+=1
                                 if timeoutcustom > 5:
                                     self.close_socket()
 
-                            except socket.error:
+                            except socket.error as e:
+                                print(e)
                                 self.close_socket()
                                 pass
+                    except Exception as e:
+                        print(e)
                     finally:
                         print("end while connected")
                         self.close_socket()
@@ -209,6 +214,14 @@ class HostServer():
             return self.encode("10000")
         if(message == "BAND:VID?"):
             return self.encode("10000")
+        if(message == "CALC:MARK:X?"):
+            return self.encode("105000")
+        if(message == "CALC:MARK:Y?"):
+            idx=int((time.time()%10)/10*len(self.linesDat))
+            
+            l=self.linesDat[idx]
+            angle=(idx*2*360/len(self.linesDat))%360
+            return self.encode(str(l[int(len(l)/2)])+" , "+str(angle))        
         return None
 
     ## Add \n at the end of the message then transform it to a array of bytes.

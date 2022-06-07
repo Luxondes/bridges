@@ -194,7 +194,7 @@ class HostServer():
         if(message == ":FREQ:STOP?"):
             return self.encode("110000")
         if(message == ":FREQ:CENTER?"):
-            return self.encode("10500")
+            return self.encode("105000")
         if(message == ":FREQ:SPAN?"):
             return self.encode("500")
         if(message == ":TRAC? TRACE1"):
@@ -218,10 +218,10 @@ class HostServer():
             return self.encode("105000")
         if(message == "CALC:MARK:Y?"):
             idx=int((time.time()%10)/10*len(self.linesDat))
-            
+
             l=self.linesDat[idx]
             angle=(idx*2*360/len(self.linesDat))%360
-            return self.encode(str(l[int(len(l)/2)])+" , "+str(angle))        
+            return self.encode(str(l[int(len(l)/2)])+" , "+str(angle))
         return None
 
     ## Add \n at the end of the message then transform it to a array of bytes.

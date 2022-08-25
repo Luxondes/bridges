@@ -12,7 +12,7 @@ from RSA_API import *
 
 ## Host server which serve to bridge with the RSA and any client.
 class HostServer():
-    def  __init__(self,center_freq,span,harddisk):
+    def  __init__(self,center_freq,span,harddisk,start,stop):
         self.dataSaved=[]
         self.isRunning=False
         self.thread=None
@@ -25,6 +25,13 @@ class HostServer():
         self.hostsocket=None
         self.center=c_double(center_freq)
         self.span=span
+        if(start!=None and stop!=None):
+            self.center=c_double((stop+start)/2)
+            self.span=abs(stop-start)
+        print("Center: "+str(self.center.value)+"Hz Span: "+str(self.span)+"Hz")
+
+
+        
         self.harddisk=harddisk
         self.att=c_double(0)
         
@@ -335,7 +342,7 @@ class HostServer():
 ## read all variables inside the file properties.txt.
 def readPropertiesFile(filename):
     # Default values
-    values = [106.6e6,10e6,'C',False]
+    values = [106.6e6,10e6,'C',False,None,None]
     
     bol=os.path.isfile('./'+filename)
     if not bol:
@@ -352,7 +359,18 @@ def readPropertiesFile(filename):
             continue
         if(val.startswith("[")):
             continue
-                    
+        if(val.upper().startswith("START=")):
+            val=val[len("START="):]
+            try:
+                values[3]=float(val)
+            except:
+                None
+        if(val.upper().startswith("STOP=")):
+            val=val[len("STOP="):]
+            try:
+                values[4]=float(val)
+            except:
+                None                    
         if(val.upper().startswith("CENTER=")):
             val=val[len("CENTER="):]
             try:
@@ -377,9 +395,8 @@ def readPropertiesFile(filename):
 ## Launch the host server and link the CTRL+D (stop) and CTRL+Q (quit) with the stop of the server.
 if __name__ == '__main__':
     values=readPropertiesFile("properties.ini")
-    print("Center: "+str(values[0])+"Hz Span: "+str(values[1])+"Hz")
 
-    hostserver=HostServer(values[0],values[1],values[2])
+    hostserver=HostServer(values[0],values[1],values[2],values[3],values[4])
 
     signal.signal(signal.SIGTERM,hostserver.stop)
     signal.signal(signal.SIGINT,hostserver.stop)
